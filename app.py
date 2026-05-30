@@ -49,24 +49,24 @@ st.subheader(f"Summary for {ctw}")
 
 col1, col2, col3, col4 = st.columns(4)
 
-col1.metric("Total Entries", len(filtered_df))
-col2.metric("Presumptive Cases", (filtered_df["Presumptive"] == "Yes").sum())
-col3.metric("Tested", filtered_df["Test Method"].notna().sum())
-col4.metric("Positive Cases", (filtered_df["Test Result"] == "Positive").sum())
+col1.metric("Screened", len(filtered_df))
+col2.metric("Presumptive", (filtered_df["Presumptive"] == "Yes").sum())
+col3.metric("Presumptive Evaluated", filtered_df["Test Method"].notna().sum())
+col4.metric("Cases", (filtered_df["Test Result"] == "Positive").sum())
 
 # ---------------- CHARTS ----------------
 
-st.subheader("📊 Age Distribution")
-age_chart = filtered_df["Age Group"].value_counts().sort_index()
-st.bar_chart(age_chart)
+# st.subheader("📊 Age Distribution")
+# age_chart = filtered_df["Age Group"].value_counts().sort_index()
+# st.bar_chart(age_chart)
 
-st.subheader("👥 Gender Distribution")
-gender_chart = filtered_df["Gender"].value_counts()
-st.bar_chart(gender_chart)
+# st.subheader("👥 Gender Distribution")
+# gender_chart = filtered_df["Gender"].value_counts()
+# st.bar_chart(gender_chart)
 
-st.subheader("🧪 Test Results")
-test_chart = filtered_df["Test Result"].value_counts()
-st.bar_chart(test_chart)
+# st.subheader("🧪 Test Results")
+# test_chart = filtered_df["Test Result"].value_counts()
+# st.bar_chart(test_chart)
 
 # ---------------- TABLE ----------------
 st.subheader("📋 Detailed Records")
