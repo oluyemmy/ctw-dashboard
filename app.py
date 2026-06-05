@@ -1,6 +1,26 @@
 import streamlit as st
 import pandas as pd
 
+st.markdown("""
+<style>
+#MainMenu {
+    visibility: hidden;
+}
+
+footer {
+    visibility: hidden;
+}
+
+header {
+    visibility: hidden;
+}
+
+[data-testid="stToolbar"] {
+    display: none;
+}
+</style>
+""", unsafe_allow_html=True)
+
 st.set_page_config(page_title="CTW Dashboard", layout="wide")
 
 st.title("📊 Community Health Worker Dashboard")
