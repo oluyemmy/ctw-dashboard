@@ -1,25 +1,21 @@
 import streamlit as st
 import pandas as pd
 
-st.markdown("""
+st.set_page_config(
+    page_title="Community Health Worker Dashboard",
+    page_icon="📊",
+    layout="wide",
+    initial_sidebar_state="collapsed"
+)
+
+hide_streamlit_style = """
 <style>
-#MainMenu {
-    visibility: hidden;
-}
-
-footer {
-    visibility: hidden;
-}
-
-header {
-    visibility: hidden;
-}
-
-[data-testid="stToolbar"] {
-    display: none;
-}
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
 </style>
-""", unsafe_allow_html=True)
+"""
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 st.set_page_config(page_title="CTW Dashboard", layout="wide")
 
