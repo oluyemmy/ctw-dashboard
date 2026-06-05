@@ -33,8 +33,6 @@ ctw = st.sidebar.selectbox("Select Your Name", sorted(df["CTW"].dropna().unique(
 
 lga = st.sidebar.selectbox("Select LGA", sorted(df["LGA"].dropna().unique()))
 
-test_result = st.sidebar.selectbox("Select Test Result", sorted(df["Test Result"].dropna().unique()))
-
 date_range = st.sidebar.date_input("Select Date Range", [])
 
 # Filter data
@@ -71,5 +69,43 @@ col4.metric("Cases", (filtered_df["Test Result"] == "Positive").sum())
 # st.bar_chart(test_chart)
 
 # ---------------- TABLE ----------------
-st.subheader("📋 Detailed Records")
-st.dataframe(filtered_df)
+# ---------------- TABLE ----------------
+
+col1, col2 = st.columns([4,1])
+
+with col1:
+    st.subheader("📋 Detailed Records")
+
+with col2:
+    result_filter = st.selectbox(
+        "Test Result",
+        ["All", "Positive", "Negative", "Not Tested"]
+    )
+
+# Create a copy specifically for the table
+table_df = filtered_df.copy()
+
+# Apply filter only to the table
+if result_filter == "Positive":
+    table_df = table_df[
+        table_df["Test Result"].fillna("").str.upper() == "POSITIVE"
+    ]
+
+elif result_filter == "Negative":
+    table_df = table_df[
+        table_df["Test Result"].fillna("").str.upper() == "NEGATIVE"
+    ]
+
+elif result_filter == "Not Tested":
+    table_df = table_df[
+        table_df["Test Result"].isna() |
+        (table_df["Test Result"].astype(str).str.strip() == "")
+    ]
+
+st.write(f"Showing **{len(table_df)}** record(s)")
+
+st.dataframe(
+    table_df,
+    use_container_width=True,
+    hide_index=True
+)
