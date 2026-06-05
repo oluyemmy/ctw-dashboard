@@ -33,6 +33,8 @@ ctw = st.sidebar.selectbox("Select Your Name", sorted(df["CTW"].dropna().unique(
 
 lga = st.sidebar.selectbox("Select LGA", sorted(df["LGA"].dropna().unique()))
 
+test_result = st.sidebar.selectbox("Select Test Result", sorted(df["Test Result"].dropna().unique()))
+
 date_range = st.sidebar.date_input("Select Date Range", [])
 
 # Filter data
